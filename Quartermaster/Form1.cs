@@ -58,11 +58,6 @@ namespace Quartermaster
                     ReadFromExcel();
                 }
             }
-        } //COOMMENBXGFXGIKFLFDOL
-
-        private void Test()
-        {
-
         }
         private void WriteToExcel()
         {
