@@ -30,7 +30,7 @@ namespace Quartermaster
         private void AutoConfig()
         {
             ConfigFolderPath = Directory.GetCurrentDirectory();
-            if(!File.Exists(ConfigFolderPath + ConfigFile))
+            if (!File.Exists(ConfigFolderPath + ConfigFile))
             {
                 MessageBox.Show("Please select a folder to save your inventory data. You can change it later at any time.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 if (dialogDataPath.ShowDialog() == DialogResult.OK)
@@ -46,11 +46,11 @@ namespace Quartermaster
                     }
                     else
                     {
-                        return;
+                        MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
             }
-            else
+            else if (File.Exists(ConfigFolderPath + ConfigFile + File.Exists(DataFolderPath + DataFile)))
             {
                 using (StreamReader sr = File.OpenText(ConfigFolderPath + ConfigFile))
                 {
@@ -58,6 +58,11 @@ namespace Quartermaster
                     ReadFromExcel();
                 }
             }
+            else if (File.Exists(ConfigFolderPath + ConfigFile + !File.Exists(DataFolderPath + DataFile)))
+            {
+                MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
         }
         private void WriteToExcel()
         {
@@ -197,12 +202,17 @@ namespace Quartermaster
             if(dialogDataPath.ShowDialog() == DialogResult.OK)
             {
                 DataFolderPath = dialogDataPath.SelectedPath;
-
-                EnableNums();
-                ReadFromExcel();
-                Task.Delay(100);
-                DisableNums();
-
+                if (File.Exists(DataFolderPath + DataFile))
+                {
+                    EnableNums();
+                    ReadFromExcel();
+                    Task.Delay(100);
+                    DisableNums();
+                }
+                else
+                {
+                    MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
                 using (StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile))
                 {
                     sw.WriteLine(DataFolderPath);
