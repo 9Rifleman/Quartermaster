@@ -93,11 +93,17 @@ namespace Quartermaster
                 myexcelWorksheet.Cells[8, 1] = twentyFourInch;
                 twentySevenInch = Convert.ToInt32(num27inch.Value);
                 myexcelWorksheet.Cells[9, 1] = twentySevenInch;
-                              
-                myexcelApplication.ActiveWorkbook.SaveAs(@DataFolderPath + DataFile, Excel.XlFileFormat.xlWorkbookNormal);
 
-                myexcelWorkbook.Close();
-                myexcelApplication.Quit();
+                try
+                {
+                    myexcelApplication.ActiveWorkbook.SaveAs(@DataFolderPath + DataFile, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlLocalSessionChanges);
+                    myexcelWorkbook.Close();
+                    myexcelApplication.Quit();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("File not saved.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
         }
 
@@ -181,7 +187,7 @@ namespace Quartermaster
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
-        {
+        {   
             WriteToExcel();
             PlayChime();
             btnSave.Text = "Saved!";
@@ -222,5 +228,6 @@ namespace Quartermaster
                 }
             }
         }
+
     }
 }
