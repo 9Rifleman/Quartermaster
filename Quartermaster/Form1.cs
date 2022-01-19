@@ -1,7 +1,4 @@
-using System;
-using System.IO;
 using System.Media;
-using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Quartermaster
@@ -50,17 +47,23 @@ namespace Quartermaster
                     }
                 }
             }
-            else if (File.Exists(ConfigFolderPath + ConfigFile + File.Exists(DataFolderPath + DataFile)))
+            else if (File.Exists(ConfigFolderPath + ConfigFile))
             {
                 using (StreamReader sr = File.OpenText(ConfigFolderPath + ConfigFile))
                 {
                     DataFolderPath = sr.ReadLine();
-                    ReadFromExcel();
+                    if (File.Exists(DataFolderPath + DataFile))
+                    {
+                        EnableNums();
+                        ReadFromExcel();
+                        Task.Delay(100);
+                        DisableNums();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
                 }
-            }
-            else if (File.Exists(ConfigFolderPath + ConfigFile + !File.Exists(DataFolderPath + DataFile)))
-            {
-                MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
 
         }
