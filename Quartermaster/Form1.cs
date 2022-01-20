@@ -23,6 +23,7 @@ namespace Quartermaster
         private const string ConfigFile = @"\QMconfig.txt";
         string DataFolderPath = "";
         private const string DataFile = @"\QMsource.xls";
+
         private void AutoConfig()
         {
             ConfigFolderPath = Directory.GetCurrentDirectory();
