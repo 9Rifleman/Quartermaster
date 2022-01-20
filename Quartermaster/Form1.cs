@@ -100,9 +100,10 @@ namespace Quartermaster
                     myexcelWorkbook.Close();
                     myexcelApplication.Quit();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    MessageBox.Show("File not saved.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    var errMsg = "File not saved. " + e.Message;
+                    MessageBox.Show(errMsg, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
