@@ -51,6 +51,7 @@
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dialogSaveFile = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.numLaptop2New)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLaptop2Old)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLaptop1Old)).BeginInit();
@@ -220,7 +221,7 @@
             this.lblHiddenAuthor.Name = "lblHiddenAuthor";
             this.lblHiddenAuthor.Size = new System.Drawing.Size(87, 15);
             this.lblHiddenAuthor.TabIndex = 0;
-            this.lblHiddenAuthor.Text = "Version 0.3.0.21";
+            this.lblHiddenAuthor.Text = "Version 0.3.1.25";
             this.lblHiddenAuthor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LblHiddenAuthor_MouseDoubleClick);
             // 
             // checkAllowEdit
@@ -281,6 +282,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Inventory";
             // 
+            // dialogSaveFile
+            // 
+            this.dialogSaveFile.FileName = "QMsource.xls";
+            // 
             // Quartermaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -339,5 +344,6 @@
         private Button btnOpen;
         private Button btnSave;
         private GroupBox groupBox1;
+        private SaveFileDialog dialogSaveFile;
     }
 }
