@@ -1,5 +1,5 @@
 using System.Media;
-using Excel = Microsoft.Office.Interop.Excel;
+using System.Text;
 
 namespace Quartermaster
 {
@@ -22,12 +22,12 @@ namespace Quartermaster
         string ConfigFolderPath = "";
         private const string ConfigFile = @"\QMconfig.txt";
         string DataFolderPath = "";
-        private const string DataFile = @"\QMsource.xls";
+        private const string DataFile = @"\QMsource.csv";
 
         private void AutoConfig()
         {
             ConfigFolderPath = Directory.GetCurrentDirectory();
-            if (!File.Exists(ConfigFolderPath + ConfigFile))
+           if (!File.Exists(ConfigFolderPath + ConfigFile))
             {
                 MessageBox.Show("Please select a folder to save your inventory data. You can change it later at any time.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 if (dialogDataPath.ShowDialog() == DialogResult.OK)
@@ -43,7 +43,7 @@ namespace Quartermaster
                     }
                     else
                     {
-                        MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
             }
@@ -61,7 +61,7 @@ namespace Quartermaster
                     }
                     else
                     {
-                        MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
             }
@@ -69,65 +69,44 @@ namespace Quartermaster
         }
         private void WriteToExcel()
         {
-            Excel.Application myexcelApplication = new Excel.Application();
-            if (myexcelApplication != null)
-            {
-                Excel.Workbook myexcelWorkbook = myexcelApplication.Workbooks.Add();
-                Excel.Worksheet myexcelWorksheet = (Excel.Worksheet)myexcelWorkbook.Sheets.Add();
+             string csvSeparator = ",";
+             StringBuilder stringBuilder = new StringBuilder();
 
-                laptop1New = Convert.ToInt32(numLaptop1New.Value);
-                myexcelWorksheet.Cells[1, 1] = laptop1New;
-                laptop1Old = Convert.ToInt32(numLaptop1Old.Value);
-                myexcelWorksheet.Cells[2, 1] = laptop1Old;
-                laptop2New = Convert.ToInt32(numLaptop2New.Value);
-                myexcelWorksheet.Cells[3, 1] = laptop2New;
-                laptop2Old = Convert.ToInt32(numLaptop2Old.Value);
-                myexcelWorksheet.Cells[4, 1] = laptop2Old;
-                dock = Convert.ToInt32(numDock.Value);
-                myexcelWorksheet.Cells[5, 1] = dock;
-                headset = Convert.ToInt32(numHeadset.Value);
-                myexcelWorksheet.Cells[6, 1] = headset;
-                kbMouse = Convert.ToInt32(numKBMouse.Value);
-                myexcelWorksheet.Cells[7, 1] = kbMouse;
-                twentyFourInch = Convert.ToInt32(num24inch.Value);
-                myexcelWorksheet.Cells[8, 1] = twentyFourInch;
-                twentySevenInch = Convert.ToInt32(num27inch.Value);
-                myexcelWorksheet.Cells[9, 1] = twentySevenInch;
+             laptop1New = Convert.ToInt32(numLaptop1New.Value);
+             laptop1Old = Convert.ToInt32(numLaptop1Old.Value);
+             laptop2New = Convert.ToInt32(numLaptop2New.Value);
+             laptop2Old = Convert.ToInt32(numLaptop2Old.Value);
+             dock = Convert.ToInt32(numDock.Value);
+             headset = Convert.ToInt32(numHeadset.Value);
+             kbMouse = Convert.ToInt32(numKBMouse.Value);
+             twentyFourInch = Convert.ToInt32(num24inch.Value);
+             twentySevenInch = Convert.ToInt32(num27inch.Value);
 
-                try
-                {
-                    myexcelApplication.ActiveWorkbook.SaveAs(@DataFolderPath + DataFile, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlNoChange, Excel.XlSaveConflictResolution.xlLocalSessionChanges);
-                    myexcelWorkbook.Close();
-                    myexcelApplication.Quit();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("File not saved.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
+             int[] outputArray = { laptop1New, laptop1Old, laptop2New, laptop2Old, dock, headset, kbMouse, twentyFourInch, twentySevenInch };
+
+             for (int i = 0; i < 9; i++)
+             {
+                stringBuilder.Append(string.Join(csvSeparator, outputArray[i]));
+             }
+
+             File.WriteAllText(DataFolderPath + DataFile, stringBuilder.ToString());
         }
 
         private void ReadFromExcel()
         {
-            Excel.Application myexcelApplication = new Excel.Application();
-            if (myexcelApplication != null)
-            {
-                Excel.Workbook myexcelWorkbook = myexcelApplication.Workbooks.Open(@DataFolderPath + DataFile);
-                Excel.Worksheet myexcelWorksheet = (Excel.Worksheet)myexcelWorkbook.Sheets[1];
+            string csvString = File.ReadAllText(DataFolderPath + DataFile);
+            int csvInput = Convert.ToInt32(csvString);
+            int[] inputArray = csvInput.ToString().ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
 
-                numLaptop1New.Value = Convert.ToInt32(myexcelWorksheet.Cells[1, 1].Value);
-                numLaptop1Old.Value = Convert.ToInt32(myexcelWorksheet.Cells[2, 1].Value);
-                numLaptop2New.Value = Convert.ToInt32(myexcelWorksheet.Cells[3, 1].Value);
-                numLaptop2Old.Value = Convert.ToInt32(myexcelWorksheet.Cells[4, 1].Value);
-                numDock.Value = Convert.ToInt32(myexcelWorksheet.Cells[5, 1].Value);
-                numHeadset.Value = Convert.ToInt32(myexcelWorksheet.Cells[6, 1].Value);
-                numKBMouse.Value = Convert.ToInt32(myexcelWorksheet.Cells[7, 1].Value);
-                num24inch.Value = Convert.ToInt32(myexcelWorksheet.Cells[8, 1].Value);
-                num27inch.Value = Convert.ToInt32(myexcelWorksheet.Cells[9, 1].Value);
-
-                myexcelWorkbook.Close();
-                myexcelApplication.Quit();
-            }
+            numLaptop1New.Value = Convert.ToInt32(inputArray[0]);
+            numLaptop1Old.Value = Convert.ToInt32(inputArray[1]);
+            numLaptop2New.Value = Convert.ToInt32(inputArray[2]);
+            numLaptop2Old.Value = Convert.ToInt32(inputArray[3]);
+            numDock.Value = Convert.ToInt32(inputArray[4]);
+            numHeadset.Value = Convert.ToInt32(inputArray[5]);
+            numKBMouse.Value = Convert.ToInt32(inputArray[6]);
+            num24inch.Value = Convert.ToInt32(inputArray[7]);
+            num27inch.Value = Convert.ToInt32(inputArray[8]);
         }
 
         private static void PlayChime()
@@ -220,7 +199,7 @@ namespace Quartermaster
                 }
                 else
                 {
-                    MessageBox.Show("Save your changes to create it at your chosen location.", "Data file not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
                 using (StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile))
                 {
@@ -228,6 +207,5 @@ namespace Quartermaster
                 }
             }
         }
-
     }
 }
