@@ -29,40 +29,36 @@ namespace Quartermaster
             ConfigFolderPath = Directory.GetCurrentDirectory();
            if (!File.Exists(ConfigFolderPath + ConfigFile))
             {
-                MessageBox.Show("Please select a folder to save your inventory data. You can change it later at any time.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("Please select a folder to save your inventory data. You can change it later at any time.", "First run", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 if (dialogDataPath.ShowDialog() == DialogResult.OK)
                 {
                     DataFolderPath = dialogDataPath.SelectedPath;
                 }
-                using (StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile))
+                using StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile);
+                sw.WriteLine(DataFolderPath);
+                if (File.Exists(DataFolderPath + DataFile))
                 {
-                    sw.WriteLine(DataFolderPath);
-                    if (File.Exists(DataFolderPath + DataFile))
-                    {
-                        ReadFromExcel();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    }
+                    ReadFromExcel();
+                }
+                else
+                {
+                    MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "QMsource.csv not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
             else if (File.Exists(ConfigFolderPath + ConfigFile))
             {
-                using (StreamReader sr = File.OpenText(ConfigFolderPath + ConfigFile))
+                using StreamReader sr = File.OpenText(ConfigFolderPath + ConfigFile);
+                DataFolderPath = sr.ReadLine();
+                if (File.Exists(DataFolderPath + DataFile))
                 {
-                    DataFolderPath = sr.ReadLine();
-                    if (File.Exists(DataFolderPath + DataFile))
-                    {
-                        EnableNums();
-                        ReadFromExcel();
-                        Task.Delay(100);
-                        DisableNums();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    }
+                    EnableNums();
+                    ReadFromExcel();
+                    Task.Delay(100);
+                    DisableNums();
+                }
+                else
+                {
+                    MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "QMsource.csv not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
 
@@ -70,7 +66,7 @@ namespace Quartermaster
         private void WriteToExcel()
         {
              string csvSeparator = ",";
-             StringBuilder stringBuilder = new StringBuilder();
+             StringBuilder stringBuilder = new();
 
              laptop1New = Convert.ToInt32(numLaptop1New.Value);
              laptop1Old = Convert.ToInt32(numLaptop1Old.Value);
@@ -111,13 +107,13 @@ namespace Quartermaster
 
         private static void PlayChime()
         {
-            SoundPlayer simpleSound = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
+            SoundPlayer simpleSound = new(@"c:\Windows\Media\chimes.wav");
             simpleSound.Play();
         }
 
         private static void PlayTada()
         {
-            SoundPlayer simpleSound = new SoundPlayer(@"c:\Windows\Media\tada.wav");
+            SoundPlayer simpleSound = new(@"c:\Windows\Media\tada.wav");
             simpleSound.Play();
         }
 
@@ -199,12 +195,18 @@ namespace Quartermaster
                 }
                 else
                 {
-                    MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    formSave formSave = new();
+                    if (formSave.ShowDialog() == DialogResult.OK)
+                    {
+                        DataFolderPath = dialogDataPath.SelectedPath;
+                    }
+                    else
+                    {
+                        return; // No workie yet
+                    }
                 }
-                using (StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile))
-                {
-                    sw.WriteLine(DataFolderPath);
-                }
+                using StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile);
+                sw.WriteLine(DataFolderPath);
             }
         }
     }

@@ -12,12 +12,6 @@ namespace Quartermaster
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Quartermaster());
-
-        }
-
-        internal static void HandleException(Exception ex)
-        {            
-            MessageBox.Show("File not saved.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);           
         }
     }
 }
