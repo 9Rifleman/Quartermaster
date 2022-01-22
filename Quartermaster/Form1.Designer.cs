@@ -154,15 +154,18 @@
             this.lblLaptop1.Size = new System.Drawing.Size(80, 25);
             this.lblLaptop1.TabIndex = 0;
             this.lblLaptop1.Text = "Latitude";
+            this.lblLaptop1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblLaptop2
             // 
+            this.lblLaptop2.AutoSize = true;
             this.lblLaptop2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblLaptop2.Location = new System.Drawing.Point(22, 23);
             this.lblLaptop2.Name = "lblLaptop2";
             this.lblLaptop2.Size = new System.Drawing.Size(89, 25);
             this.lblLaptop2.TabIndex = 0;
             this.lblLaptop2.Text = "Precision";
+            this.lblLaptop2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDisplay27
             // 
@@ -173,6 +176,7 @@
             this.lblDisplay27.Size = new System.Drawing.Size(103, 25);
             this.lblDisplay27.TabIndex = 0;
             this.lblDisplay27.Text = "27\" display";
+            this.lblDisplay27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDisplay24
             // 
@@ -183,6 +187,7 @@
             this.lblDisplay24.Size = new System.Drawing.Size(103, 25);
             this.lblDisplay24.TabIndex = 0;
             this.lblDisplay24.Text = "24\" display";
+            this.lblDisplay24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblKBMouse
             // 
@@ -193,6 +198,7 @@
             this.lblKBMouse.Size = new System.Drawing.Size(97, 25);
             this.lblKBMouse.TabIndex = 0;
             this.lblKBMouse.Text = "KB/mouse";
+            this.lblKBMouse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDock
             // 
@@ -203,6 +209,7 @@
             this.lblDock.Size = new System.Drawing.Size(54, 25);
             this.lblDock.TabIndex = 0;
             this.lblDock.Text = "Dock";
+            this.lblDock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHeadset
             // 
@@ -213,6 +220,7 @@
             this.lblHeadset.Size = new System.Drawing.Size(80, 25);
             this.lblHeadset.TabIndex = 0;
             this.lblHeadset.Text = "Headset";
+            this.lblHeadset.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHiddenAuthor
             // 
@@ -221,7 +229,7 @@
             this.lblHiddenAuthor.Name = "lblHiddenAuthor";
             this.lblHiddenAuthor.Size = new System.Drawing.Size(87, 15);
             this.lblHiddenAuthor.TabIndex = 0;
-            this.lblHiddenAuthor.Text = "Version 0.6.0.34";
+            this.lblHiddenAuthor.Text = "Version 0.6.1.37";
             this.lblHiddenAuthor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LblHiddenAuthor_MouseDoubleClick);
             // 
             // checkAllowEdit
@@ -258,6 +266,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.lblHeadset);
             this.groupBox1.Controls.Add(this.lblKBMouse);
             this.groupBox1.Controls.Add(this.lblDock);
