@@ -29,7 +29,7 @@ namespace Quartermaster
             ConfigFolderPath = Directory.GetCurrentDirectory();
            if (!File.Exists(ConfigFolderPath + ConfigFile))
             {
-                MessageBox.Show("Please select a folder to save your inventory data. You can change it later at any time.", "First run", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("Please select a folder containing the main data file. If you don't have one, it will be created in the selected location when you save. You can change it later at any time.", "First run", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 if (dialogDataPath.ShowDialog() == DialogResult.OK)
                 {
                     DataFolderPath = dialogDataPath.SelectedPath;
@@ -42,7 +42,16 @@ namespace Quartermaster
                 }
                 else
                 {
-                    MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "QMsource.csv not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    PlayDefault();
+                    formSave formSave = new();
+                    if (formSave.ShowDialog() == DialogResult.OK)
+                    {
+                        DataFolderPath = dialogDataPath.SelectedPath;
+                    }
+                    else
+                    {
+                        ButtonOpenLoop();
+                    }
                 }
             }
             else if (File.Exists(ConfigFolderPath + ConfigFile))
@@ -58,7 +67,16 @@ namespace Quartermaster
                 }
                 else
                 {
-                    MessageBox.Show("Data file not found. Save your changes to create it at your chosen location.", "QMsource.csv not found", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    PlayDefault();
+                    formSave formSave = new();
+                    if (formSave.ShowDialog() == DialogResult.OK)
+                    {
+                        DataFolderPath = dialogDataPath.SelectedPath;
+                    }
+                    else
+                    {
+                        ButtonOpenLoop();
+                    }
                 }
             }
 
@@ -78,11 +96,22 @@ namespace Quartermaster
              twentyFourInch = Convert.ToInt32(num24inch.Value);
              twentySevenInch = Convert.ToInt32(num27inch.Value);
 
-             int[] outputArray = { laptop1New, laptop1Old, laptop2New, laptop2Old, dock, headset, kbMouse, twentyFourInch, twentySevenInch };
+            int[][] outputArray = new int[][]
+            {
+                 new int[] {laptop1New},
+                 new int[] {laptop1Old},
+                 new int[] {laptop2New},
+                 new int[] {laptop2Old},
+                 new int[] {dock},
+                 new int[] {headset},
+                 new int[] {kbMouse},
+                 new int[] {twentyFourInch},
+                 new int[] {twentySevenInch}
+            };
 
              for (int i = 0; i < 9; i++)
              {
-                stringBuilder.Append(string.Join(csvSeparator, outputArray[i]));
+                stringBuilder.AppendLine(string.Join(csvSeparator, outputArray[i]));
              }
 
              File.WriteAllText(DataFolderPath + DataFile, stringBuilder.ToString());
@@ -90,9 +119,14 @@ namespace Quartermaster
 
         private void ReadFromExcel()
         {
-            string csvString = File.ReadAllText(DataFolderPath + DataFile);
-            int csvInput = Convert.ToInt32(csvString);
-            int[] inputArray = csvInput.ToString().ToCharArray().Select(x => (int)Char.GetNumericValue(x)).ToArray();
+            int[] inputArray = new int[9];
+            int arrayCount = 0;
+            StreamReader sr = new StreamReader(DataFolderPath + DataFile);
+            while(!sr.EndOfStream)
+            {
+                inputArray[arrayCount] = Convert.ToInt32(sr.ReadLine());
+                arrayCount++;
+            }
 
             numLaptop1New.Value = Convert.ToInt32(inputArray[0]);
             numLaptop1Old.Value = Convert.ToInt32(inputArray[1]);
@@ -103,14 +137,9 @@ namespace Quartermaster
             numKBMouse.Value = Convert.ToInt32(inputArray[6]);
             num24inch.Value = Convert.ToInt32(inputArray[7]);
             num27inch.Value = Convert.ToInt32(inputArray[8]);
-        }
 
-        private static void PlayChime()
-        {
-            SoundPlayer simpleSound = new(@"c:\Windows\Media\chimes.wav");
-            simpleSound.Play();
+            sr.Close();           
         }
-
         private static void PlayTada()
         {
             SoundPlayer simpleSound = new(@"c:\Windows\Media\tada.wav");
@@ -201,7 +230,7 @@ namespace Quartermaster
         private void BtnSave_Click(object sender, EventArgs e)
         {   
             WriteToExcel();
-            PlayChime();
+            PlayDefault();
             btnSave.Text = "Saved!";
             btnSave.Enabled = false;
             checkAllowEdit.Checked = false;
@@ -217,6 +246,7 @@ namespace Quartermaster
         {
             AutoConfig();           
         }
+
 
         private void BtnOpen_Click(object sender, EventArgs e)
         {
