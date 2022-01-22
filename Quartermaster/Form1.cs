@@ -117,6 +117,43 @@ namespace Quartermaster
             simpleSound.Play();
         }
 
+        private static void PlayDefault()
+        {
+            SoundPlayer simpleSound = new(@"c:\Windows\Media\Windows Default.wav");
+            simpleSound.Play();
+        }
+
+        private void ButtonOpenLoop()
+        {
+            if(dialogDataPath.ShowDialog() == DialogResult.OK)
+            {
+                DataFolderPath = dialogDataPath.SelectedPath;
+                if (File.Exists(DataFolderPath + DataFile))
+                {
+                    EnableNums();
+                    ReadFromExcel();
+                    Task.Delay(100);
+                    DisableNums();
+                }
+                else
+                {
+                    PlayDefault();
+                    formSave formSave = new();
+                    if (formSave.ShowDialog() == DialogResult.OK)
+                    {
+                        DataFolderPath = dialogDataPath.SelectedPath;
+                    }
+                    else
+                    {
+                    ButtonOpenLoop();
+                    }
+                }
+                using StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile);
+                sw.WriteLine(DataFolderPath);
+            }
+        }
+
+
         private void EnableNums()
         {
             numLaptop1New.Enabled = true;
@@ -183,31 +220,7 @@ namespace Quartermaster
 
         private void BtnOpen_Click(object sender, EventArgs e)
         {
-            if(dialogDataPath.ShowDialog() == DialogResult.OK)
-            {
-                DataFolderPath = dialogDataPath.SelectedPath;
-                if (File.Exists(DataFolderPath + DataFile))
-                {
-                    EnableNums();
-                    ReadFromExcel();
-                    Task.Delay(100);
-                    DisableNums();
-                }
-                else
-                {
-                    formSave formSave = new();
-                    if (formSave.ShowDialog() == DialogResult.OK)
-                    {
-                        DataFolderPath = dialogDataPath.SelectedPath;
-                    }
-                    else
-                    {
-                        return; // No workie yet
-                    }
-                }
-                using StreamWriter sw = File.CreateText(ConfigFolderPath + ConfigFile);
-                sw.WriteLine(DataFolderPath);
-            }
+            ButtonOpenLoop();
         }
     }
 }

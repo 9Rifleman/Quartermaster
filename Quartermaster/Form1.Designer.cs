@@ -217,27 +217,27 @@
             // lblHiddenAuthor
             // 
             this.lblHiddenAuthor.AutoSize = true;
-            this.lblHiddenAuthor.Location = new System.Drawing.Point(89, 399);
+            this.lblHiddenAuthor.Location = new System.Drawing.Point(89, 389);
             this.lblHiddenAuthor.Name = "lblHiddenAuthor";
             this.lblHiddenAuthor.Size = new System.Drawing.Size(87, 15);
             this.lblHiddenAuthor.TabIndex = 0;
-            this.lblHiddenAuthor.Text = "Version 0.5.1.31";
+            this.lblHiddenAuthor.Text = "Version 0.6.0.34";
             this.lblHiddenAuthor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LblHiddenAuthor_MouseDoubleClick);
             // 
             // checkAllowEdit
             // 
             this.checkAllowEdit.AutoSize = true;
-            this.checkAllowEdit.Location = new System.Drawing.Point(71, 326);
+            this.checkAllowEdit.Location = new System.Drawing.Point(89, 325);
             this.checkAllowEdit.Name = "checkAllowEdit";
-            this.checkAllowEdit.Size = new System.Drawing.Size(117, 19);
+            this.checkAllowEdit.Size = new System.Drawing.Size(99, 19);
             this.checkAllowEdit.TabIndex = 3;
-            this.checkAllowEdit.Text = "Update inventory";
+            this.checkAllowEdit.Text = "Edit inventory";
             this.checkAllowEdit.UseVisualStyleBackColor = true;
             this.checkAllowEdit.CheckedChanged += new System.EventHandler(this.CheckAllowEdit_CheckedChanged);
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(48, 360);
+            this.btnOpen.Location = new System.Drawing.Point(48, 350);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 1;
@@ -248,7 +248,7 @@
             // btnSave
             // 
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(137, 360);
+            this.btnSave.Location = new System.Drawing.Point(137, 350);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
@@ -290,7 +290,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(269, 421);
+            this.ClientSize = new System.Drawing.Size(269, 410);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnOpen);
@@ -302,7 +302,6 @@
             this.Name = "Quartermaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quartermaster";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Quartermaster_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numLaptop2New)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLaptop2Old)).EndInit();
