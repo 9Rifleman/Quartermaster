@@ -29,24 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formSave));
-            this.lblSaveQuery = new System.Windows.Forms.Label();
+            this.lblSaveQuery1 = new System.Windows.Forms.Label();
             this.btnYes = new System.Windows.Forms.Button();
             this.btnNo = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSaveQuery2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblSaveQuery
+            // lblSaveQuery1
             // 
-            this.lblSaveQuery.AutoEllipsis = true;
-            this.lblSaveQuery.Location = new System.Drawing.Point(74, 5);
-            this.lblSaveQuery.Name = "lblSaveQuery";
-            this.lblSaveQuery.Size = new System.Drawing.Size(233, 86);
-            this.lblSaveQuery.TabIndex = 0;
-            this.lblSaveQuery.Text = resources.GetString("lblSaveQuery.Text");
-            this.lblSaveQuery.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSaveQuery1.Location = new System.Drawing.Point(74, 5);
+            this.lblSaveQuery1.Name = "lblSaveQuery1";
+            this.lblSaveQuery1.Size = new System.Drawing.Size(231, 42);
+            this.lblSaveQuery1.TabIndex = 0;
+            this.lblSaveQuery1.Text = "Data file not found in the selected folder. It will be created the next time you " +
+    "save.";
+            this.lblSaveQuery1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnYes
             // 
@@ -71,9 +72,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(21, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(21, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 39);
+            this.pictureBox1.Size = new System.Drawing.Size(46, 45);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -87,19 +88,29 @@
             this.panel1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.panel1.Location = new System.Drawing.Point(-9, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(337, 54);
+            this.panel1.Size = new System.Drawing.Size(337, 41);
             this.panel1.TabIndex = 4;
+            // 
+            // lblSaveQuery2
+            // 
+            this.lblSaveQuery2.Location = new System.Drawing.Point(74, 47);
+            this.lblSaveQuery2.Name = "lblSaveQuery2";
+            this.lblSaveQuery2.Size = new System.Drawing.Size(231, 48);
+            this.lblSaveQuery2.TabIndex = 5;
+            this.lblSaveQuery2.Text = "Click OK to confirm the path or Source... to choose a different one.";
             // 
             // formSave
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(318, 145);
+            this.ClientSize = new System.Drawing.Size(307, 116);
             this.ControlBox = false;
+            this.Controls.Add(this.lblSaveQuery2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblSaveQuery);
+            this.Controls.Add(this.lblSaveQuery1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "formSave";
             this.ShowIcon = false;
@@ -115,11 +126,11 @@
         }
 
         #endregion
-
-        private Label lblSaveQuery;
         private Button btnYes;
         private Button btnNo;
         private PictureBox pictureBox1;
         private Panel panel1;
+        protected Label lblSaveQuery1;
+        private Label lblSaveQuery2;
     }
 }
