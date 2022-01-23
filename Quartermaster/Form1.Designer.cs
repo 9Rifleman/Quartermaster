@@ -231,7 +231,7 @@
             this.lblHiddenAuthor.Name = "lblHiddenAuthor";
             this.lblHiddenAuthor.Size = new System.Drawing.Size(87, 15);
             this.lblHiddenAuthor.TabIndex = 0;
-            this.lblHiddenAuthor.Text = "Version 0.8.0.59";
+            this.lblHiddenAuthor.Text = "Version 0.8.1.61";
             this.lblHiddenAuthor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LblHiddenAuthor_MouseDoubleClick);
             // 
             // checkAllowEdit

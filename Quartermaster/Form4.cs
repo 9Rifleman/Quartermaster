@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Media;
 
 namespace Quartermaster
 {
@@ -17,5 +9,21 @@ namespace Quartermaster
             InitializeComponent();
         }
 
+        SoundPlayer sp = new SoundPlayer(Directory.GetCurrentDirectory() + @"\dorkmode.wav");
+
+        private void SecretDialog_Load(object sender, EventArgs e)
+        {
+            Task.Delay(500);
+            if (File.Exists(Directory.GetCurrentDirectory() + @"\dorkmode.wav"))
+            {
+                sp.Play();
+            }
+            return;
+        }
+
+        private void SecretDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            sp.Stop();
+        }
     }
 }
