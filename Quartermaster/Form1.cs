@@ -114,6 +114,8 @@ namespace Quartermaster
                 stringBuilder.AppendLine(string.Join(csvSeparator, outputArray[i]));
              }
 
+
+
              File.WriteAllText(DataFolderPath + DataFile, stringBuilder.ToString());
         }
 
@@ -181,7 +183,6 @@ namespace Quartermaster
                 sw.WriteLine(DataFolderPath);
             }
         }
-
 
         private void EnableNums()
         {
@@ -251,6 +252,46 @@ namespace Quartermaster
         private void BtnOpen_Click(object sender, EventArgs e)
         {
             ButtonOpenLoop();
+        }
+
+        private void lblLaptop1_DoubleClick(object sender, EventArgs e)
+        {
+            string oldName = lblLaptop1.Text;
+            PlayDefault();
+            FormRename formRename = new FormRename();
+            if(formRename.ShowDialog() == DialogResult.OK)
+            {
+                string newName = formRename.boxRename.Text;
+                if(newName == "")
+                {
+                    return;
+                }
+                else
+                {
+                    lblLaptop1.Text = newName;
+                    lblLaptop1.TextAlign = ContentAlignment.MiddleCenter;
+                }
+            }
+        }
+
+        private void lblLaptop2_DoubleClick(object sender, EventArgs e)
+        {
+            string oldName = lblLaptop2.Text;
+            PlayDefault();
+            FormRename formRename = new FormRename();
+            if (formRename.ShowDialog() == DialogResult.OK)
+            {
+                string newName = formRename.boxRename.Text;
+                if (newName == "")
+                {
+                    return;
+                }
+                else
+                {
+                    lblLaptop2.Text = newName;
+                    lblLaptop2.TextAlign = ContentAlignment.MiddleCenter;
+                }
+            }
         }
     }
 }

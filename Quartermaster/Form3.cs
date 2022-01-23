@@ -10,18 +10,21 @@ using System.Windows.Forms;
 
 namespace Quartermaster
 {
-    public partial class formSave : Form
+    public partial class FormRename : Form
     {
-        public formSave()
+        public FormRename()
         {
             InitializeComponent();
         }
 
-        public DialogResult CustomSaveDialog()
+        public DialogResult RenameDialog()
         {
             return(ShowDialog());
         }
 
-
+        private void btnRename_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

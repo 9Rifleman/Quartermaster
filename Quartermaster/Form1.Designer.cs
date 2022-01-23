@@ -155,6 +155,7 @@
             this.lblLaptop1.TabIndex = 0;
             this.lblLaptop1.Text = "Latitude";
             this.lblLaptop1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLaptop1.DoubleClick += new System.EventHandler(this.lblLaptop1_DoubleClick);
             // 
             // lblLaptop2
             // 
@@ -166,6 +167,7 @@
             this.lblLaptop2.TabIndex = 0;
             this.lblLaptop2.Text = "Precision";
             this.lblLaptop2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLaptop2.DoubleClick += new System.EventHandler(this.lblLaptop2_DoubleClick);
             // 
             // lblDisplay27
             // 
@@ -229,7 +231,7 @@
             this.lblHiddenAuthor.Name = "lblHiddenAuthor";
             this.lblHiddenAuthor.Size = new System.Drawing.Size(87, 15);
             this.lblHiddenAuthor.TabIndex = 0;
-            this.lblHiddenAuthor.Text = "Version 0.6.3.46";
+            this.lblHiddenAuthor.Text = "Version 0.7.0.52";
             this.lblHiddenAuthor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LblHiddenAuthor_MouseDoubleClick);
             // 
             // checkAllowEdit
@@ -341,7 +343,6 @@
         private NumericUpDown numKBMouse;
         private NumericUpDown numDock;
         private NumericUpDown numHeadset;
-        private Label lblLaptop1;
         private Label lblLaptop2;
         private Label lblDisplay27;
         private Label lblDisplay24;
@@ -355,5 +356,6 @@
         private Button btnSave;
         private GroupBox groupBox1;
         private SaveFileDialog dialogSaveFile;
+        public Label lblLaptop1;
     }
 }
