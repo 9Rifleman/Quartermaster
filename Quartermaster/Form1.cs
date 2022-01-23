@@ -114,9 +114,13 @@ namespace Quartermaster
                 stringBuilder.AppendLine(string.Join(csvSeparator, outputArray[i]));
              }
 
+            // when folder containing the main data file was not selected before
+            if (DataFolderPath == "")
+            {
+                DataFolderPath = Directory.GetCurrentDirectory();
+            }
 
-
-             File.WriteAllText(DataFolderPath + DataFile, stringBuilder.ToString());
+            File.WriteAllText(DataFolderPath + DataFile, stringBuilder.ToString());
         }
 
         private void ReadFromExcel()
