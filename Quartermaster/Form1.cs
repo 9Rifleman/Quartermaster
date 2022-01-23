@@ -9,7 +9,6 @@ namespace Quartermaster
         {
             InitializeComponent();
         }
-
         int laptop1New;
         int laptop2New;
         int laptop1Old;
@@ -233,7 +232,10 @@ namespace Quartermaster
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
-        {   
+        {
+            ConfigFolderPath = Directory.GetCurrentDirectory();
+            using StreamReader sr = File.OpenText(ConfigFolderPath + ConfigFile);
+            DataFolderPath = sr.ReadLine();
             WriteToExcel();
             PlayDefault();
             btnSave.Text = "Saved!";
@@ -242,10 +244,17 @@ namespace Quartermaster
         }
 
         private void LblHiddenAuthor_MouseDoubleClick(object sender, MouseEventArgs e)
+        {          
+            SecretDialogAppear();
+        }
+
+        private void SecretDialogAppear()
         {
             PlayTada();
-            MessageBox.Show("       Proudly made by Rifleman in 2022", "Credits", MessageBoxButtons.OK);
+            SecretDialog secretDialog = new SecretDialog();
+            secretDialog.ShowDialog();
         }
+
 
         private void Quartermaster_Load(object sender, EventArgs e)
         {
