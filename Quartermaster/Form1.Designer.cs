@@ -104,7 +104,7 @@
             // 
             this.num27inch.Enabled = false;
             this.num27inch.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.num27inch.Location = new System.Drawing.Point(142, 51);
+            this.num27inch.Location = new System.Drawing.Point(152, 51);
             this.num27inch.Name = "num27inch";
             this.num27inch.Size = new System.Drawing.Size(58, 33);
             this.num27inch.TabIndex = 9;
@@ -113,7 +113,7 @@
             // 
             this.num24inch.Enabled = false;
             this.num24inch.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.num24inch.Location = new System.Drawing.Point(141, 119);
+            this.num24inch.Location = new System.Drawing.Point(151, 119);
             this.num24inch.Name = "num24inch";
             this.num24inch.Size = new System.Drawing.Size(58, 33);
             this.num24inch.TabIndex = 10;
@@ -122,7 +122,7 @@
             // 
             this.numKBMouse.Enabled = false;
             this.numKBMouse.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numKBMouse.Location = new System.Drawing.Point(142, 246);
+            this.numKBMouse.Location = new System.Drawing.Point(152, 246);
             this.numKBMouse.Name = "numKBMouse";
             this.numKBMouse.Size = new System.Drawing.Size(58, 33);
             this.numKBMouse.TabIndex = 12;
@@ -131,7 +131,7 @@
             // 
             this.numDock.Enabled = false;
             this.numDock.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numDock.Location = new System.Drawing.Point(141, 183);
+            this.numDock.Location = new System.Drawing.Point(151, 183);
             this.numDock.Name = "numDock";
             this.numDock.Size = new System.Drawing.Size(58, 33);
             this.numDock.TabIndex = 11;
@@ -149,7 +149,7 @@
             // 
             this.lblLaptop1.AutoSize = true;
             this.lblLaptop1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLaptop1.Location = new System.Drawing.Point(26, 121);
+            this.lblLaptop1.Location = new System.Drawing.Point(26, 23);
             this.lblLaptop1.Name = "lblLaptop1";
             this.lblLaptop1.Size = new System.Drawing.Size(80, 25);
             this.lblLaptop1.TabIndex = 0;
@@ -161,7 +161,7 @@
             // 
             this.lblLaptop2.AutoSize = true;
             this.lblLaptop2.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLaptop2.Location = new System.Drawing.Point(22, 23);
+            this.lblLaptop2.Location = new System.Drawing.Point(22, 121);
             this.lblLaptop2.Name = "lblLaptop2";
             this.lblLaptop2.Size = new System.Drawing.Size(89, 25);
             this.lblLaptop2.TabIndex = 0;
@@ -173,7 +173,7 @@
             // 
             this.lblDisplay27.AutoSize = true;
             this.lblDisplay27.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDisplay27.Location = new System.Drawing.Point(118, 23);
+            this.lblDisplay27.Location = new System.Drawing.Point(128, 23);
             this.lblDisplay27.Name = "lblDisplay27";
             this.lblDisplay27.Size = new System.Drawing.Size(103, 25);
             this.lblDisplay27.TabIndex = 0;
@@ -184,7 +184,7 @@
             // 
             this.lblDisplay24.AutoSize = true;
             this.lblDisplay24.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDisplay24.Location = new System.Drawing.Point(118, 91);
+            this.lblDisplay24.Location = new System.Drawing.Point(128, 91);
             this.lblDisplay24.Name = "lblDisplay24";
             this.lblDisplay24.Size = new System.Drawing.Size(103, 25);
             this.lblDisplay24.TabIndex = 0;
@@ -195,7 +195,7 @@
             // 
             this.lblKBMouse.AutoSize = true;
             this.lblKBMouse.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblKBMouse.Location = new System.Drawing.Point(124, 218);
+            this.lblKBMouse.Location = new System.Drawing.Point(134, 218);
             this.lblKBMouse.Name = "lblKBMouse";
             this.lblKBMouse.Size = new System.Drawing.Size(97, 25);
             this.lblKBMouse.TabIndex = 0;
@@ -206,7 +206,7 @@
             // 
             this.lblDock.AutoSize = true;
             this.lblDock.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDock.Location = new System.Drawing.Point(141, 155);
+            this.lblDock.Location = new System.Drawing.Point(151, 155);
             this.lblDock.Name = "lblDock";
             this.lblDock.Size = new System.Drawing.Size(54, 25);
             this.lblDock.TabIndex = 0;
@@ -258,7 +258,7 @@
             // btnSave
             // 
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(137, 350);
+            this.btnSave.Location = new System.Drawing.Point(147, 350);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 2;
@@ -302,12 +302,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(269, 410);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.checkAllowEdit);
             this.Controls.Add(this.lblHiddenAuthor);
+            this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -343,7 +345,6 @@
         private NumericUpDown numKBMouse;
         private NumericUpDown numDock;
         private NumericUpDown numHeadset;
-        private Label lblLaptop2;
         private Label lblDisplay27;
         private Label lblDisplay24;
         private Label lblKBMouse;
@@ -357,5 +358,6 @@
         private GroupBox groupBox1;
         private SaveFileDialog dialogSaveFile;
         public Label lblLaptop1;
+        public Label lblLaptop2;
     }
 }

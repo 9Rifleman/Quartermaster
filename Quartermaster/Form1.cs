@@ -269,7 +269,6 @@ namespace Quartermaster
 
         private void lblLaptop1_DoubleClick(object sender, EventArgs e)
         {
-            string oldName = lblLaptop1.Text;
             PlayDefault();
             FormRename formRename = new FormRename();
             if(formRename.ShowDialog() == DialogResult.OK)

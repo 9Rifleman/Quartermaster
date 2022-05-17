@@ -69,5 +69,23 @@ namespace Quartermaster.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latitude.
+        /// </summary>
+        public static string StringLaptop1 {
+            get {
+                return ResourceManager.GetString("StringLaptop1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Precision.
+        /// </summary>
+        public static string StringLaptop2 {
+            get {
+                return ResourceManager.GetString("StringLaptop2", resourceCulture);
+            }
+        }
     }
 }
